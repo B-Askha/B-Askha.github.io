@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator Layout</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .calculator {
+        width: 340px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px 5px #ccc;
+        background-color: #c5c6d0;
+      }
+      .calculator-screen {
+        height: 50px;
+        width: 100%;
+        border: none;
+        background-color: #eee;
+        text-align: right;
+        padding: 10px;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .btn {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      /* .btn:hover {
+        background-color: greenyellow;
+      } */
+
+      .btn-secondary {
+        color: black;
+        background-color: white;
+      }
+
+      .btn-secondary-1 {
+        background-color: red;
+      }
+
+      .btn-secondary-2 {
+        background-color: greenyellow;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="text-align: center; padding-top: 40px">Calculator</h1>
+      <div class="calculator">
+        <!-- Display Screen -->
+        <input type="text" class="calculator-screen" id="screen" disabled />
+        <!-- Buttons Row 1 -->
+        <div class="row">
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="clearScreen()">C</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary-1" onclick="del()">DEL</button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('/')">
+              /
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('*')">
+              *
+            </button>
+          </div>
+        </div>
+        <!-- Buttons Row 2 -->
+        <div class="row">
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('7')">
+              7
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('8')">
+              8
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('9')">
+              9
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('-')">
+              -
+            </button>
+          </div>
+        </div>
+        <!-- Buttons Row 3 -->
+        <div class="row">
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('4')">
+              4
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('5')">
+              5
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('6')">
+              6
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('+')">
+              +
+            </button>
+          </div>
+        </div>
+        <!-- Buttons Row 4 -->
+        <div class="row">
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('1')">
+              1
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('2')">
+              2
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('3')">
+              3
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('%')">
+              %
+            </button>
+          </div>
+        </div>
+        <!-- Buttons Row 5 -->
+        <div class="row">
+          <div class="col-3"><button class="btn btn-secondary">0</button></div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="appendToScreen('.')">
+              .
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-secondary-2" onclick="calculate()">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script> -->
+    <script>
+      const screen = document.getElementById("screen");
+      // function ini berfungsi untuk menampilkan apa yang di inputkan user muncul ke layar
+      function appendToScreen(value) {
+        screen.value += value;
+      }
+      // function ini berfungsi untuk menghapus data di layar
+      function clearScreen() {
+        screen.value = "";
+      }
+      // function ini berfungsi untuk menghapus angka satu - persatu
+      function del() {
+        // slice (nilai awal, nilai akhir)
+        screen.value = screen.value.slice(0, -1);
+      }
+      function calculate() {
+        // try catch hanya bisa melakukan kondisi jika tipe data nya sama
+        try {
+          //Kondisi jika benar
+          screen.value = eval(screen.value);
+        } catch {
+          screen.value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
